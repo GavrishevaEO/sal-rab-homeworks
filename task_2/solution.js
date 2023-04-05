@@ -20,12 +20,8 @@ function calcDiscount(sum, min, discount) {
     let discountPart = discount; // величина скидки в процентах
 
     let discountSum;
-    if (productsSum >= discountMinSum) {
-        discountSum = (productsSum / 100) * discountPart;
-    } else {
-        discountSum = 0;
-    }
-    
+    discountSum = productsSum >= discountMinSum ? (productsSum / 100) * discountPart : 0;
+        
     return discountSum;
 }
 
@@ -40,7 +36,7 @@ function calcInvoice({sum, discountMinSum, discountPart, shippingFreeMinSum, shi
 
     totalSum = totalSum + shippingSum;
     
-    let freeShipping = (shippingSum == 0) ? true : false;
+    let freeShipping = shippingSum == 0;
 
     
     return {discount: discountSum, freeShipping, shipping: shippingSum, total: totalSum};
